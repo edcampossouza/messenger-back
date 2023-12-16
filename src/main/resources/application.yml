@@ -5,3 +5,5 @@ spring:
     password: ${DB_PASSWORD}
   config:
     import: optional:file:.env[.properties]
+server:
+  port: ${API_PORT}
