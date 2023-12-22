@@ -5,5 +5,9 @@ spring:
     password: ${DB_PASSWORD}
   config:
     import: optional:file:.env[.properties]
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create-drop
 server:
   port: ${API_PORT}
