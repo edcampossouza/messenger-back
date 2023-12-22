@@ -18,4 +18,7 @@ public class Constants {
 
     public static final String INFO_PATH = "/info";
     public static final String ADMINS_PATH = "/admins";
+
+    public static final String MESSAGES_PATH = "/messages";
+    public static final String MESSAGES_PATTERN = "/messages/**";
 }
