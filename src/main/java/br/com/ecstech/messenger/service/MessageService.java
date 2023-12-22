@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class MessageService {
     @Autowired
@@ -31,10 +33,17 @@ public class MessageService {
             messageRepository.save(message);
             return new SendMessageResponseDTO(message);
         } catch (UsernameNotFoundException e) {
-            // throw custom exception
-            System.err.println(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
 
+    public List<Message> getReceivedMessages() {
+        ApplicationUser me = userService.getLoggedInOrThrow();
+        return messageRepository.findByReceiver_Username(me.getUsername());
+    }
+
+    public List<Message> getSentMessages() {
+        ApplicationUser me = userService.getLoggedInOrThrow();
+        return messageRepository.findBySender_Username(me.getUsername());
     }
 }
